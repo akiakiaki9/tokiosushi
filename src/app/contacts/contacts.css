@@ -1,0 +1,796 @@
+/* ============================================
+   CONTACTS PAGE
+   ============================================ */
+.contacts {
+    padding-bottom: 80px;
+}
+
+/* ---------- HERO ---------- */
+.contacts__hero {
+    position: relative;
+    padding: 80px 0 60px;
+    overflow: hidden;
+}
+
+.contacts__hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.contacts__hero-bg::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.25), transparent 70%);
+    filter: blur(60px);
+}
+
+.contacts__hero-kanji {
+    position: absolute;
+    font-family: Georgia, serif;
+    font-size: 260px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.015);
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    user-select: none;
+}
+
+.contacts__hero-inner {
+    position: relative;
+    text-align: center;
+}
+
+.contacts__title {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 12px 0 16px;
+}
+
+.contacts__title span {
+    background: linear-gradient(135deg, #e63946, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: italic;
+    font-family: Georgia, serif;
+}
+
+.contacts__subtitle {
+    max-width: 520px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* ---------- КАРТОЧКИ ---------- */
+.contacts__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.contacts__card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px;
+    background: linear-gradient(160deg, #161616, #101010);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contacts__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.contacts__card:hover {
+    border-color: rgba(230, 57, 70, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.contacts__card:hover::before {
+    opacity: 1;
+}
+
+.contacts__card--primary {
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.15), rgba(201, 42, 55, 0.08));
+    border-color: rgba(230, 57, 70, 0.4);
+}
+
+.contacts__card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(230, 57, 70, 0.15);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.contacts__card--primary .contacts__card-icon {
+    background: var(--red);
+    color: white;
+    box-shadow: 0 6px 16px rgba(230, 57, 70, 0.4);
+}
+
+.contacts__card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.contacts__card-body span {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contacts__card-body strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.3;
+}
+
+.contacts__card-body small {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.contacts__card-arrow {
+    color: var(--text-muted);
+    font-size: 18px;
+    transition: all 0.25s;
+    position: relative;
+    z-index: 1;
+}
+
+.contacts__card:hover .contacts__card-arrow {
+    color: var(--red);
+    transform: translateX(3px);
+}
+
+/* ---------- ОСНОВНОЙ БЛОК ---------- */
+.contacts__main {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+/* Расписание */
+.contacts__schedule-card {
+    background: linear-gradient(160deg, #161616, #0f0f0f);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts__schedule-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contacts__schedule-head h2 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.contacts__open-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #86efac;
+}
+
+.contacts__open-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.4);
+    }
+}
+
+.contacts__schedule {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.contacts__schedule-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.contacts__schedule-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.contacts__schedule-row--today {
+    background: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.25);
+}
+
+.contacts__schedule-day {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.contacts__schedule-row--today .contacts__schedule-day {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.contacts__schedule-day em {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 2px 7px;
+    background: var(--red);
+    color: white;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.contacts__schedule-hours {
+    font-weight: 700;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+}
+
+.contacts__schedule-row--today .contacts__schedule-hours {
+    color: var(--red);
+}
+
+.contacts__schedule-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contacts__schedule-actions .btn-primary {
+    flex: 1;
+    justify-content: center;
+    padding: 12px;
+    font-size: 13px;
+}
+
+.contacts__btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.contacts__btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Карта */
+.contacts__map-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    min-height: 420px;
+    background: #101010;
+}
+
+.contacts__map-card iframe {
+    filter: grayscale(0.5) contrast(1.1) brightness(0.9);
+    transition: filter 0.4s;
+    display: block;
+}
+
+.contacts__map-card:hover iframe {
+    filter: grayscale(0.1) contrast(1.05) brightness(1);
+}
+
+.contacts__map-overlay {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.contacts__map-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--red);
+    min-width: 0;
+}
+
+.contacts__map-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.contacts__map-info strong {
+    font-size: 13px;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contacts__map-info span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.contacts__map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--red);
+    color: white;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.contacts__map-btn:hover {
+    background: var(--red-dark);
+    transform: translateX(2px);
+}
+
+/* ---------- СОЦСЕТИ ---------- */
+.contacts__socials {
+    margin-bottom: 60px;
+}
+
+.contacts__socials-head {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.contacts__socials-head .section-title {
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.contacts__socials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.contacts__social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    color: var(--white);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contacts__social::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.contacts__social:hover {
+    transform: translateY(-3px);
+}
+
+.contacts__social:hover::before {
+    opacity: 1;
+}
+
+.contacts__social--insta::before {
+    background: linear-gradient(135deg, rgba(240, 148, 51, 0.15), rgba(188, 24, 136, 0.15));
+}
+
+.contacts__social--tg::before {
+    background: linear-gradient(135deg, rgba(42, 171, 238, 0.15), rgba(34, 158, 217, 0.05));
+}
+
+.contacts__social--phone::before {
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.15), transparent);
+}
+
+.contacts__social>svg {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.contacts__social--insta>svg {
+    color: #e1306c;
+}
+
+.contacts__social--tg>svg {
+    color: #2aabee;
+}
+
+.contacts__social--phone>svg {
+    color: var(--red);
+}
+
+.contacts__social>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+.contacts__social strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.contacts__social small {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contacts__social>span {
+    color: var(--text-muted);
+    font-size: 16px;
+    transition: all 0.25s;
+    position: relative;
+    z-index: 1;
+}
+
+.contacts__social:hover>span {
+    color: var(--white);
+    transform: translateX(3px);
+}
+
+/* Кнопка «Копировать» */
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 11px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.copy-btn--copied {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #86efac;
+}
+
+/* ---------- ИНФО + CTA ---------- */
+.contacts__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.contacts__info-card,
+.contacts__cta-card {
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contacts__info-card {
+    background: linear-gradient(160deg, #161616, #101010);
+}
+
+.contacts__info-card h3 {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.contacts__info-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.contacts__info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contacts__info-row:first-of-type {
+    border-top: none;
+}
+
+.contacts__info-row svg {
+    color: var(--red);
+    flex-shrink: 0;
+}
+
+.contacts__cta-card {
+    background: linear-gradient(135deg, rgba(230, 57, 70, 0.15), rgba(212, 175, 55, 0.05));
+    border-color: rgba(230, 57, 70, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contacts__cta-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+.contacts__cta-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.contacts__cta-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.contacts__cta-card .btn-primary {
+    align-self: center;
+    position: relative;
+}
+
+/* ============================================
+   АДАПТИВ
+   ============================================ */
+@media (max-width: 900px) {
+    .contacts__cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts__main {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts__map-card {
+        min-height: 340px;
+    }
+
+    .contacts__socials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts__info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .contacts__hero {
+        padding: 50px 0 40px;
+    }
+
+    .contacts__hero-kanji {
+        font-size: 180px;
+        right: -30px;
+    }
+
+    .contacts__title {
+        font-size: 38px;
+    }
+
+    .contacts__subtitle {
+        font-size: 14px;
+    }
+
+    .contacts__card {
+        padding: 16px;
+    }
+
+    .contacts__card-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .contacts__card-body strong {
+        font-size: 14px;
+    }
+
+    .contacts__card-body small {
+        font-size: 11px;
+    }
+
+    .contacts__schedule-card {
+        padding: 18px;
+    }
+
+    .contacts__schedule-head h2 {
+        font-size: 16px;
+    }
+
+    .contacts__schedule-row {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .contacts__map-card {
+        min-height: 280px;
+    }
+
+    .contacts__map-overlay {
+        padding: 10px 12px;
+    }
+
+    .contacts__map-info strong {
+        font-size: 12px;
+    }
+
+    .contacts__map-btn {
+        padding: 7px 11px;
+        font-size: 11px;
+    }
+
+    .contacts__social {
+        padding: 14px 16px;
+    }
+
+    .contacts__social>svg {
+        width: 38px;
+        height: 38px;
+    }
+
+    .contacts__info-card,
+    .contacts__cta-card {
+        padding: 20px;
+    }
+
+    .contacts__cta-card h3 {
+        font-size: 17px;
+    }
+
+    .copy-btn span {
+        display: none;
+    }
+
+    .copy-btn {
+        padding: 7px;
+    }
+}
