@@ -1,23 +1,18 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaTimes, FaPlus, FaMinus } from 'react-icons/fa';
-import { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
 
 export default function MenuModal({ item, onClose }) {
     const { addToCart } = useCart();
     const [qty, setQty] = useState(1);
 
-    // Блокировка скролла
     useEffect(() => {
-        const prevOverflow = document.body.style.overflow;
+        const prev = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = prevOverflow;
-        };
+        return () => { document.body.style.overflow = prev; };
     }, []);
 
-    // Escape
     useEffect(() => {
         const onKey = (e) => { if (e.key === 'Escape') onClose(); };
         window.addEventListener('keydown', onKey);
@@ -36,7 +31,12 @@ export default function MenuModal({ item, onClose }) {
                     <FaTimes size={18} />
                 </button>
 
-                <img src={item.image} alt={item.name} className="modal__img" />
+                <img
+                    src={item.image || '/images/placeholder.png'}
+                    alt={item.name}
+                    className="modal__img"
+                    onError={(e) => { e.currentTarget.src = '/images/placeholder.png'; }}
+                />
 
                 <div className="modal__body">
                     <h2 className="modal__title">{item.name}</h2>
@@ -54,7 +54,11 @@ export default function MenuModal({ item, onClose }) {
 
                     <div className="modal__footer">
                         <span className="modal__price">
-                            {(item.price * qty).toLocaleString()} <small>сум</small>
+                            {item.price > 0 ? (
+                                <>{(item.price * qty).toLocaleString()} <small>сум</small></>
+                            ) : (
+                                <small>Уточняйте цену</small>
+                            )}
                         </span>
                         <button className="btn-primary" onClick={handleAdd}>
                             <FaPlus size={12} /> В корзину

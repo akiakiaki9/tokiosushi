@@ -52,7 +52,12 @@ export default function CartSidebar() {
 
                     {cart.map((item) => (
                         <div key={item.id} className="cart__item">
-                            <img src={item.image} alt={item.name} className="cart__img" />
+                            <img
+                                src={item.image || '/images/placeholder.png'}
+                                alt={item.name}
+                                className="cart__img"
+                                onError={(e) => { e.currentTarget.src = '/images/placeholder.png'; }}
+                            />
                             <div className="cart__info">
                                 <p className="cart__name">{item.name}</p>
                                 <p className="cart__price">{item.price.toLocaleString()} сум</p>

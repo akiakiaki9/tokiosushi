@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 
 const ITEMS = [
-    { emoji: '🍣', name: 'Роллы', desc: 'Более 20 видов', href: '/menu?cat=rolls' },
-    { emoji: '🍱', name: 'Сеты', desc: 'Для компании', href: '/menu?cat=sets' },
-    { emoji: '🍥', name: 'Суши', desc: 'Классика', href: '/menu?cat=sushi' },
-    { emoji: '🥤', name: 'Напитки', desc: 'Освежающие', href: '/menu?cat=drinks' },
+    { emoji: '🍣', name: 'Роллы', desc: '34 вида', href: '/menu?cat=rolls' },
+    { emoji: '🍱', name: 'Сеты', desc: '30 сетов', href: '/menu?cat=sets' },
+    { emoji: '🍕', name: 'Пиццы', desc: '18 видов', href: '/menu?cat=pizza' },
+    { emoji: '🔥', name: 'Запечённые', desc: '12 видов', href: '/menu?cat=baked' },
 ];
 
 export default function QuickMenu() {

@@ -9,35 +9,21 @@ import {
     FaUtensils,
 } from 'react-icons/fa';
 import CopyButton from '../components/Contacts/CopyButton';
+import ScheduleCard from '../components/Contacts/ScheduleCard';
 import './contacts.css';
 
 export const metadata = {
     title: 'Контакты — Tokio Sushi Bukhara',
     description:
         'Свяжитесь с Tokio Sushi Bukhara: телефон +998 77 487 65 66, адрес в Бухаре, часы работы 10:00–00:00. Карта и маршрут до суши-бара.',
-    alternates: {
-        canonical: 'https://www.tokiosushibar.uz/contacts',
-    },
+    alternates: { canonical: 'https://www.tokiosushibar.uz/contacts' },
 };
 
 const PHONE = '+998 77 487 65 66';
 const PHONE_RAW = '+998774876566';
 const MAPS_URL = 'https://maps.google.com/?q=39.764483647518404,64.42864298529717';
 
-const SCHEDULE = [
-    { day: 'Понедельник', hours: '10:00 – 00:00' },
-    { day: 'Вторник', hours: '10:00 – 00:00' },
-    { day: 'Среда', hours: '10:00 – 00:00' },
-    { day: 'Четверг', hours: '10:00 – 00:00' },
-    { day: 'Пятница', hours: '10:00 – 00:00' },
-    { day: 'Суббота', hours: '10:00 – 00:00' },
-    { day: 'Воскресенье', hours: '10:00 – 00:00' },
-];
-
 export default function ContactsPage() {
-    const today = new Date().getDay(); // 0 = Sunday
-    const todayIndex = today === 0 ? 6 : today - 1; // 0 = Пн
-
     return (
         <div className="contacts">
             {/* HERO */}
@@ -87,51 +73,17 @@ export default function ContactsPage() {
                     <div className="contacts__card-icon"><FaMapMarkerAlt /></div>
                     <div className="contacts__card-body">
                         <span>Адрес</span>
-                        <strong>улица Хамзы, 25, Бухара</strong>
+                        <strong>Бухара, Узбекистан</strong>
                         <small>Открыть на карте</small>
                     </div>
                     <span className="contacts__card-arrow">→</span>
                 </a>
             </section>
 
-            {/* ОСНОВНОЙ БЛОК: РАСПИСАНИЕ + КАРТА */}
+            {/* РАСПИСАНИЕ + КАРТА */}
             <section className="container contacts__main">
-                {/* Расписание */}
-                <div className="contacts__schedule-card">
-                    <div className="contacts__schedule-head">
-                        <h2>Часы работы</h2>
-                        <span className="contacts__open-badge">
-                            <span className="contacts__open-dot" />
-                            Открыто
-                        </span>
-                    </div>
+                <ScheduleCard />
 
-                    <ul className="contacts__schedule">
-                        {SCHEDULE.map((row, i) => (
-                            <li
-                                key={row.day}
-                                className={`contacts__schedule-row ${i === todayIndex ? 'contacts__schedule-row--today' : ''}`}
-                            >
-                                <span className="contacts__schedule-day">
-                                    {row.day}
-                                    {i === todayIndex && <em>сегодня</em>}
-                                </span>
-                                <span className="contacts__schedule-hours">{row.hours}</span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <div className="contacts__schedule-actions">
-                        <a href={`tel:${PHONE_RAW}`} className="btn-primary">
-                            <FaPhone size={12} /> Позвонить
-                        </a>
-                        <Link href="/menu" className="contacts__btn-ghost">
-                            <FaUtensils size={12} /> В меню
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Карта */}
                 <div className="contacts__map-card">
                     <iframe
                         src="https://www.google.com/maps?q=39.764483647518404,64.42864298529717&z=15&output=embed"
@@ -147,7 +99,7 @@ export default function ContactsPage() {
                             <FaMapMarkerAlt size={14} />
                             <div>
                                 <strong>Tokio Sushi Bukhara</strong>
-                                <span>улица Хамзы, 25, Бухара</span>
+                                <span>Бухара, Узбекистан</span>
                             </div>
                         </div>
                         <a
@@ -212,14 +164,14 @@ export default function ContactsPage() {
                 </div>
             </section>
 
-            {/* РЕКВИЗИТЫ / ИНФО */}
+            {/* ИНФО + CTA */}
             <section className="container contacts__info">
                 <div className="contacts__info-card">
                     <h3>Tokio Sushi Bukhara</h3>
                     <p>Суши-бар и доставка японской кухни в Бухаре. Свежие роллы, сеты и суши — каждый день с 10:00 до 00:00.</p>
                     <div className="contacts__info-row">
                         <FaMapMarkerAlt size={12} />
-                        <span>улица Хамзы, 25, Бухара</span>
+                        <span>г. Бухара, Узбекистан</span>
                     </div>
                     <div className="contacts__info-row">
                         <FaClock size={12} />
@@ -231,7 +183,7 @@ export default function ContactsPage() {
                     <h3>Готовы сделать заказ?</h3>
                     <p>Откройте меню и выберите любимые блюда — привезём за 45 минут.</p>
                     <Link href="/menu" className="btn-primary">
-                        Открыть меню <FaArrowRight size={12} />
+                        <FaUtensils size={12} /> Открыть меню <FaArrowRight size={12} />
                     </Link>
                 </div>
             </section>

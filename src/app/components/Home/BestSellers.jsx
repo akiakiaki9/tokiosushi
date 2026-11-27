@@ -41,7 +41,12 @@ export default function BestSellers() {
                     {bestsellers.map((item) => (
                         <div key={item.id} className="bestsellers__card">
                             <div className="bestsellers__img">
-                                <img src={item.image} alt={item.name} loading="lazy" />
+                                <img
+                                    src={item.image || '/images/placeholder.png'}
+                                    alt={item.name}
+                                    loading="lazy"
+                                    onError={(e) => { e.currentTarget.src = '/images/placeholder.png'; }}
+                                />
                                 <span className="bestsellers__tag">Хит</span>
                             </div>
                             <div className="bestsellers__body">

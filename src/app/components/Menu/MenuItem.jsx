@@ -13,7 +13,12 @@ export default function MenuItem({ item, onOpen }) {
     return (
         <article className="menu__card" onClick={onOpen}>
             <div className="menu__card-img">
-                <img src={item.image} alt={item.name} loading="lazy" decoding="async" />
+                <img
+                    src={item.image || '/images/placeholder.png'}
+                    alt={item.name}
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.src = '/images/placeholder.png'; }}
+                />
                 <div className="menu__card-overlay" />
             </div>
             <div className="menu__card-body">
@@ -21,7 +26,11 @@ export default function MenuItem({ item, onOpen }) {
                 <p className="menu__card-desc">{item.description}</p>
                 <div className="menu__card-footer">
                     <span className="menu__card-price">
-                        {item.price.toLocaleString()} <small>сум</small>
+                        {item.price > 0 ? (
+                            <>{item.price.toLocaleString()} <small>сум</small></>
+                        ) : (
+                            <small>Уточняйте цену</small>
+                        )}
                     </span>
                     <button
                         className="menu__card-add"
