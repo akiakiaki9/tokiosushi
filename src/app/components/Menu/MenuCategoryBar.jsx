@@ -55,7 +55,6 @@ export default function MenuCategoryBar({ categories, active, onChange }) {
                                 onClick={() => onChange(cat.id)}
                                 className={`catbar__item ${isActive ? 'catbar__item--active' : ''}`}
                             >
-                                <span className="catbar__emoji">{cat.emoji}</span>
                                 <span className="catbar__name">{cat.name}</span>
                             </button>
                         );

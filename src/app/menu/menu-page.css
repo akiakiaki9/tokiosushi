@@ -1,24 +1,26 @@
 .menu-page__head {
-    padding: clamp(36px, 7vw, 72px) 0 32px;
+    padding: clamp(52px, 8vw, 88px) 0 48px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
+    background: url('/images/interior.png') center 52% / cover no-repeat;
 }
 
 .menu-page__head::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(680px, 100vw);
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(230, 57, 70, 0.16), transparent 70%);
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse at 50% 25%, rgba(12, 12, 12, 0.42), transparent 60%),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.74) 0%, rgba(5, 5, 5, 0.8) 58%, #0a0a0a 100%);
     pointer-events: none;
 }
 
 .menu-page__head .container {
     position: relative;
+    z-index: 1;
 }
 
 .menu-page__head .section-title {
@@ -56,7 +58,7 @@
 
 @media (max-width: 600px) {
     .menu-page__head {
-        padding: 32px 0 22px;
+        padding: 44px 0 30px;
     }
 
     .menu-page__delivery {

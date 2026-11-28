@@ -1,3 +1,12 @@
+const escapeHtml = (value) =>
+  String(value).replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  })[character]);
+
 export async function POST(req) {
   try {
     const { customer, location, orderDetails, total } = await req.json();
@@ -17,28 +26,35 @@ export async function POST(req) {
       ? `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}&travelmode=driving`
       : null;
 
+    if (
+      !customer ||
+      typeof customer.name !== 'string' ||
+      typeof customer.phone !== 'string' ||
+      !Number.isFinite(total) ||
+      typeof orderDetails !== 'string'
+    ) {
+      return Response.json({ error: 'Invalid order' }, { status: 400 });
+    }
+
     const lines = [
-      '🍣 *Новый заказ Tokio Sushi*',
+      '<b>🍣 Новый заказ Tokio Sushi</b>',
       '',
-      `👤 Имя: ${customer.name}`,
-      `📞 Телефон: ${customer.phone}`,
-      customer.address ? `📍 Адрес: ${customer.address}` : '',
-      customer.comment ? `💬 Комментарий: ${customer.comment}` : '',
+      `👤 <b>Имя:</b> ${escapeHtml(customer.name)}`,
+      `📞 <b>Телефон:</b> ${escapeHtml(customer.phone)}`,
+      customer.address ? `📍 <b>Адрес:</b> ${escapeHtml(customer.address)}` : '',
+      customer.comment ? `💬 <b>Комментарий:</b> ${escapeHtml(customer.comment)}` : '',
       '',
-      '*Состав заказа:*',
-      orderDetails,
+      '<b>Состав заказа:</b>',
+      escapeHtml(orderDetails),
       '',
-      `💰 *Итого: ${total.toLocaleString()} сум*`,
+      `💰 <b>Итого: ${total.toLocaleString()} сум</b>`,
     ];
 
     if (location) {
       lines.push(
         '',
-        '🗺 *Локация клиента:*',
-        `\`${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}\``,
-        '',
-        `📍 [Открыть в Яндекс.Картах](${yandexRoute})`,
-        `🌍 [Открыть в Google Maps](${googleRoute})`
+        '<b>🗺 Локация клиента:</b>',
+        `<code>${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}</code>`
       );
     }
 
@@ -50,26 +66,21 @@ export async function POST(req) {
       body: JSON.stringify({
         chat_id: CHAT_ID,
         text,
-        parse_mode: 'Markdown',
+        parse_mode: 'HTML',
         disable_web_page_preview: true,
         reply_markup: {
-          inline_keyboard: location
-            ? [
-                [
+          inline_keyboard: [
+            ...(location
+              ? [[
                   { text: '🟡 Яндекс.Маршрут', url: yandexRoute },
                   { text: '🔵 Google.Маршрут', url: googleRoute },
-                ],
-                [
-                  { text: '✅ Принять', callback_data: 'accept' },
-                  { text: '❌ Отклонить', callback_data: 'reject' },
-                ],
-              ]
-            : [
-                [
-                  { text: '✅ Принять', callback_data: 'accept' },
-                  { text: '❌ Отклонить', callback_data: 'reject' },
-                ],
-              ],
+                ]]
+              : []),
+            [
+              { text: '✅ Принять', callback_data: 'accept' },
+              { text: '❌ Отклонить', callback_data: 'reject' },
+            ],
+          ],
         },
       }),
     });

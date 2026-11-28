@@ -47,7 +47,10 @@ export default function MenuClient({ initialCategory }) {
             return;
         }
         if (gridRef.current) {
-            const top = gridRef.current.getBoundingClientRect().top + window.scrollY - 140;
+            const navbarHeight = document.querySelector('.navbar')?.getBoundingClientRect().height ?? 0;
+            const categoryBarHeight = document.querySelector('.catbar')?.getBoundingClientRect().height ?? 0;
+            const offset = navbarHeight + categoryBarHeight + 16;
+            const top = gridRef.current.getBoundingClientRect().top + window.scrollY - offset;
             window.scrollTo({ top, behavior: 'smooth' });
         }
     }, [activeCat]);
@@ -56,7 +59,6 @@ export default function MenuClient({ initialCategory }) {
         <div className="menu-page">
             <header className="menu-page__head">
                 <div className="container">
-                    <span className="section-eyebrow">Токио — ближе, чем кажется</span>
                     <h1 className="section-title">Меню <span>Tokio Sushi</span></h1>
                     <p className="menu-page__sub">
                         Выбирайте любимое — {MENU.length} блюд из свежих ингредиентов

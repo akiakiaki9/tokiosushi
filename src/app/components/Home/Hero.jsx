@@ -25,7 +25,7 @@ export default function Hero() {
 
                     <p className="hero__desc">
                         Свежайшие ингредиенты, авторские роллы и атмосфера Токио.
-                        Доставим ваш заказ по Бухаре за 45 минут.
+                        Доставим ваш заказ по Бухаре быстро!
                     </p>
 
                     <div className="hero__actions">
@@ -40,17 +40,17 @@ export default function Hero() {
 
                     <div className="hero__stats">
                         <div className="hero__stat">
-                            <strong>45</strong>
-                            <span>минут доставка</span>
+                            <strong>Быстрая</strong>
+                            <span>Доставка</span>
                         </div>
                         <div className="hero__stat-divider" />
                         <div className="hero__stat">
-                            <strong>50+</strong>
+                            <strong>100+</strong>
                             <span>блюд в меню</span>
                         </div>
                         <div className="hero__stat-divider" />
                         <div className="hero__stat">
-                            <strong>4.9</strong>
+                            <strong>5</strong>
                             <span>рейтинг гостей</span>
                         </div>
                     </div>

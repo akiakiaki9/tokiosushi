@@ -34,3 +34,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Telegram-бот
+
+Добавьте в Vercel Environment Variables:
+
+- `TELEGRAM_BOT_TOKEN` — токен бота от BotFather.
+- `TELEGRAM_ADMIN_CHAT_ID` — ID чата, куда отправлять заказы.
+- `TELEGRAM_WEBHOOK_SECRET` — случайная строка из латинских букв, цифр, `_` или `-`.
+
+После деплоя зарегистрируйте webhook из PowerShell. Переменные `$env:TELEGRAM_BOT_TOKEN` и `$env:TELEGRAM_WEBHOOK_SECRET` должны содержать те же значения, что и в Vercel:
+
+```powershell
+Invoke-RestMethod `
+  -Method Post `
+  -Uri "https://api.telegram.org/bot$env:TELEGRAM_BOT_TOKEN/setWebhook" `
+  -Body @{
+    url = "https://www.tokiosushibar.uz/api/telegram/webhook"
+    secret_token = $env:TELEGRAM_WEBHOOK_SECRET
+    allowed_updates = '["message","callback_query"]'
+  }
+```
+
+Пользователь открывает меню командой `/start`, выбирает категории и блюда inline-кнопками, а корзину оформляет ответом на сообщение бота с именем, телефоном и адресом. Корзина передаётся в callback-данных Telegram и не требует отдельной базы; для одного заказа доступно до 20 разных блюд. Заказы приходят в админ-чат, где кнопки «Принять» и «Отклонить» меняют статус.
